@@ -1,6 +1,6 @@
 /** 
   @copyright Copyright (C) 2014 coord.cn All rights reserved. 
-  @overview JsonML.js
+  @overview marks.js
   @author QianYe(coordcn@163.com)
   @reference http://www.jsonml.org/
              https://github.com/trevnorris/jqml
