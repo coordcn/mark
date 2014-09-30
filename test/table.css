@@ -1,0 +1,37 @@
+/** 
+  @copyright Copyright (C) 2014 coord.cn All rights reserved. 
+  @overview table.css
+  @author QianYe(coordcn@163.com)
+ */
+ 
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0;
+}
+
+.table{
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  padding: 6px 10px;
+  line-height: 1.4;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-border {
+  border: 1px solid #ddd; 
+}
+
+.table-border th,
+.table-border td {
+  border: 1px solid #ddd; 
+}

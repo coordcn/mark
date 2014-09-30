@@ -1,0 +1,124 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href="table.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="../markc.js"></script>
+</head>
+<body>
+<div id="test"></div>
+
+<script type="text/javascript">
+var temp = [
+    [
+      function(data){
+        return {
+          entity:data.table, 
+          flag:1
+        };
+      },
+      function(data){
+        return {
+          entity:data.ul,
+          flag:1
+        };
+      },
+      [],
+      []
+    ],
+    [],
+    {},
+    {}
+];
+
+var ul = [
+  function(data){
+    if(data && data.length){
+      var ul = ['ul'];
+      var len = data.length;
+      for(var i = 0; i  < len; i++){
+        var row = data[i];
+        var li = ['li'];
+        var a = ['a', {href:row.href}, row.text];
+        li.push(a);
+        ul.push(li);
+      }
+      
+      return {entity:ul};
+    }else{
+      return '';
+    }
+  }
+];
+
+var table = [
+  '',
+  function(data){
+    if(data && data.length){
+      var len = data.length;
+      var table = ['table', {'class':'table table-border'}];
+      var tbody = ['tbody']; // ie6 7 动态创建表格必须包含在tbody内
+      var color = ['red', 'blue'];
+      for(var i = 0; i < len; i++){
+        var row = data[i];
+        if(row && row.length){
+          var tr = ['tr'];
+          for(j = 0, l = row.length; j < l; j++){
+            tr.push(['td', {
+              onmouseover:function(e){
+                this.style.color = '#fff';
+                var bg = this.style.backgroundColor;
+                this.setAttribute('old-bg', bg);
+                this.style.background = '#3a87ad';
+                
+              }, 
+              onmouseleave:function(e){
+                this.style.color = '#000';
+                var bg = this.getAttribute('old-bg');
+                this.style.backgroundColor = bg;
+              }}, row[j]
+            ]);
+          }
+          tbody.push(tr);
+        }
+      }
+      
+      table.push(tbody);
+    
+      return {
+        entity: table
+      };
+    }else{
+      return '';
+    }
+  }
+];
+
+var td = [
+  ['姓名', '性别', '年龄', '籍贯', '政治面貌'],
+  ['张三', '男', 32, '江苏', '高端群众'],
+  ['李四', '男', 27, '浙江', '高端群众'],
+  ['王二', '男', 28, '上海', '中共党员'],
+  ['麻子', '男', 25, '北京', '高端群众']
+];
+
+var li = [
+  {href:'http://www.baidu.com', text:'baidu'},
+  {href:'http://www.jsonml.org/', text:'jsonml'},
+  {href:'https://www.zybuluo.com/mdeditor', text:'mdeditor'},
+  {href:'https://github.com/evilstreak/markdown-js', text:'markdown-js'},
+  {href:'https://github.com/trevnorris/jqml', text:'jqml'}
+];
+
+var data = {
+  head: ['title', 'good'],
+  table: markc.dom(table, td),
+  ul: markc.dom(ul, li)
+};
+
+var test = markc.dom(temp, data);
+
+document.getElementById('test').appendChild(test);
+
+</script>
+</body>
+</html>
